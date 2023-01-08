@@ -14,8 +14,8 @@ module.exports = {
         '498': '31.125rem',
       },
       width: {
-
         '266': '16.655rem',
+        '480': '30rem'
       }
     },
     colors: {

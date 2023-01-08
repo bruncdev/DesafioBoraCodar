@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { IoIosRewind, IoIosFastforward, IoIosPlay } from "react-icons/io";
+import { MusicProps } from "../types/PlayerTypes";
+import Buttons from "./Buttons";
+import CardToSelectMusic from "./CardToSelectMusic";
 
-export default function MusicPLayer() {
+export default function MusicPLayer(musicPlayer: MusicProps) {
   return (
     <div className="w-full h-screen bg-[#1c0d10] flex justify-center items-center">
       <div className="h-498 w-266 flex justify-center bg-edenColor py-12 rounded-lg">
@@ -15,24 +18,15 @@ export default function MusicPLayer() {
           />
 
           <h1 className="font-bold text-2xl mt-6 font-roboto text-[#E1E1E6]">
-            Just Saying
+            {musicPlayer.musicName}
           </h1>
 
           <h2 className="font-medium text-lg mt-1 font-roboto text-[#e1e1e6ae]">
-            EDEN
+            {musicPlayer.artistName}
           </h2>
 
           <div className="flex justify-center space-x-4 gap-8 mt-8">
-            <div>
-              <IoIosRewind size={28} color="#fff" />
-            </div>
-            <div>
-              <IoIosPlay size={28} color="#fff" />
-            </div>
-
-            <div>
-              <IoIosFastforward size={28} color="#fff" />
-            </div>
+            <Buttons />
           </div>
 
           <div className="w-full bg-[#d9d9d968] h-2 mt-8 rounded-lg">
@@ -45,6 +39,7 @@ export default function MusicPLayer() {
           </div>
         </div>
       </div>
+      <CardToSelectMusic />
     </div>
   );
 }
