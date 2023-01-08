@@ -23,6 +23,29 @@ export default function Buttons() {
     }
   }
 
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
+
+  function handleNextSong() {
+    if (currentSongIndex + 1 > songs.length - 1) {
+      setCurrentSongIndex(0);
+      setNextSongIndex(currentSongIndex + 1);
+    } else {
+      setCurrentSongIndex(currentSongIndex + 1);
+      setNextSongIndex(currentSongIndex + 2);
+    }
+  }
+
+  function handlePreviousSong() {
+    if (currentSongIndex - 1 < 0) {
+      setCurrentSongIndex(songs.length - 1);
+      setNextSongIndex(0);
+    } else {
+      setCurrentSongIndex(currentSongIndex - 1);
+      setNextSongIndex(currentSongIndex);
+    }
+  }
+
   const songs = [
     {
       id: 1,
@@ -45,7 +68,13 @@ export default function Buttons() {
   return (
     <>
       <div>
-        <IoIosRewind size={28} color="#fff" />
+        <IoIosRewind
+          size={28}
+          color="#fff"
+          onClick={() => {
+            handlePreviousSong();
+          }}
+        />
       </div>
       <div>
         {isPlay ? (
@@ -68,11 +97,26 @@ export default function Buttons() {
             }}
           />
         )}
-        <ReactAudioPlayer src={songs[3].path} ref={myAudio} />
+        <ReactAudioPlayer
+          src={songs[currentSongIndex].path}
+          ref={myAudio}
+          volume={0.02}
+          autoPlay={true}
+          controls={false}
+          onEnded={() => {
+            handleNextSong();
+          }}
+        />
       </div>
 
       <div>
-        <IoIosFastforward size={28} color="#fff" />
+        <IoIosFastforward
+          size={28}
+          color="#fff"
+          onClick={() => {
+            handleNextSong();
+          }}
+        />
       </div>
     </>
   );

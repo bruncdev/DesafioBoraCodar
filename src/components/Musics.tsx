@@ -2,13 +2,14 @@ import { MusicProps } from "../types/PlayerTypes";
 
 export default function Musics(musicPlayer: MusicProps) {
   return (
-    <div className="flex flex-row justify-between gap-40">
-      <div className="flex flex-col">
-        <span className="text-sm">{musicPlayer.musicName}</span>
-        <span className="text-xs">{musicPlayer.artistName}</span>
+    <div className="flex flex-row justify-between ">
+      <div className="flex flex-col w-480">
+        <div className="p-2 bg-[#fcd7ad87] rounded-xl flex items-center">
+          <span className="text-md text-[black] font-semibold font-roboto">
+            {musicPlayer.artistName} - {musicPlayer.musicName}
+          </span>
+        </div>
       </div>
-
-      <span className="text-sm">{musicPlayer.muisicDuration}</span>
     </div>
   );
 }
